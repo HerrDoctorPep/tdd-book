@@ -34,15 +34,23 @@ class NewVisitorTest(unittest.TestCase):
 
         table = self.browser.find_element_by_id('id_list_table')
         rows = table.find_elements_by_tag_name('tr')
-        self.assertTrue(any(row.text == '1: Buy peacock feathers' for row in rows))
+        self.assertIn('1: Buy peacock feathers',[row.text for row in rows])
 
         # There is still a text box inviting her to enter another item
-        self.fail('Finish the test!')
-
+        inputbox = self.browser.find_element_by_id('id_new_item')
+        
         # She enters 'Use peacock feathers to make fly'
+        inputbox.send_keys('Use peacock feathersto makea fly')
+        inputbox.send_keys(Keys.ENTER)
+        time.sleep(1)
 
-        # Page updates again an shows both items on the list
+       # Page updates again an shows both items on the list
 
+        table = self.browser.find_element_by_id('id_list_table')
+        rows = table.find_elements_by_tag_name('tr')
+        self.assertIn('1: Buy peacock feathers',[row.text for row in rows])
+        self.assertIn('2: Use peacock feathersto makea fly',[row.text for row in rows])
+        
         # Edith wonders if the page will remember her lists. 
         # She sees that the page has generated a unique url
         # There is some explanatory text to that effect
@@ -50,6 +58,7 @@ class NewVisitorTest(unittest.TestCase):
         # She visits the url and sees the list is there
 
         # She is satisfied and goes to sleep
+        self.fail('Finish the test!')
 
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
