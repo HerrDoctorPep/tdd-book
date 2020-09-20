@@ -1,8 +1,10 @@
 from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import WebDriverException
 import time
 
+MAX_WAIT = 10
 class NewVisitorTest(LiveServerTestCase):
 
     def setUp(self):
@@ -10,6 +12,19 @@ class NewVisitorTest(LiveServerTestCase):
 
     def tearDown(self):
         self.browser.quit()
+
+    def wait_for_row_in_list_table(self,row_text):
+        start_time = time.time()
+        while True:
+            try:
+                table = self.browser.find_element_by_id('id_list_table')
+                rows = table.find_elements_by_tag_name('tr')
+                self.assertIn(row_text, [row.text for row in rows])
+                return
+            except(AssertionError,WebDriverException) as e:
+                if time.time() - start_time > MAX_WAIT:
+                    raise e
+                time.sleep(0.5)
 
     def check_for_row_in_list_table(self,row_text):
         table = self.browser.find_element_by_id('id_list_table')
@@ -35,9 +50,7 @@ class NewVisitorTest(LiveServerTestCase):
 
         # when she hits enter the page updates with one item 'Buy peacock feathers' as item in a list
         inputbox.send_keys(Keys.ENTER)
-        time.sleep(1)
-
-        self.check_for_row_in_list_table('1: Buy peacock feathers')
+        self.wait_for_row_in_list_table('1: Buy peacock feathers')
 
         # There is still a text box inviting her to enter another item
         inputbox = self.browser.find_element_by_id('id_new_item')
@@ -45,12 +58,11 @@ class NewVisitorTest(LiveServerTestCase):
         # She enters 'Use peacock feathers to make fly'
         inputbox.send_keys('Use peacock feathersto makea fly')
         inputbox.send_keys(Keys.ENTER)
-        time.sleep(1)
 
        # Page updates again an shows both items on the list
 
-        self.check_for_row_in_list_table('1: Buy peacock feathers')
-        self.check_for_row_in_list_table('2: Use peacock feathersto makea fly')
+        self.wait_for_row_in_list_table('1: Buy peacock feathers')
+        self.wait_for_row_in_list_table('2: Use peacock feathersto makea fly')
         
         # Edith wonders if the page will remember her lists. 
         # She sees that the page has generated a unique url
