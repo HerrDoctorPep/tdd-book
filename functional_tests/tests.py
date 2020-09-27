@@ -115,18 +115,4 @@ class NewVisitorTest(LiveServerTestCase):
         self.assertIn('Buy milk',page_text)
 
         # Satisfied they both go back to sleep
-
-
-
-
-        self.fail('Finish the test!')
-
-
-
-
-
-        # There is some explanatory text to that effect
-
-        # She visits the url and sees the list is there
-
-
+        
