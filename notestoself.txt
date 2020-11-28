@@ -1,4 +1,35 @@
-# To do's
+
+# To do
+
+* [Insert open items]
+
+# Done
+
+* Don't save bank items for every request
+
+* Code smell: POST test too long
+
+* Display multiple items in table
+
+* Remove time.sleeps
+
+* Clean up after FT runs
+
+* Adjust model so that items are associated with different lists
+
+* Add a url for creating a new list via POST
+
+* Adjust unique urls for each lists
+
+* Add urls for adding new item to existing list via POST
+
+* Refactor code, esp. duplication in urls.py
+
+
+
+# Remember...
+
+## Database issue
 
 Check why adding item 'in the wild' leads to error, while FT passes?!
 --> Comments at the Chapter 7 page of the book (https://www.obeythetestinggoat.com/book/chapter_working_incrementally.html)
@@ -6,27 +37,14 @@ Check why adding item 'in the wild' leads to error, while FT passes?!
 > del db.sqlite3
 > python manage.py migrate --noinput
 
+## Environment variable for staging server
+
+Add environment variable STAGING_SERVER in Advanced Settings under
+
+Control Panel\System and Security\System
+
+And after that.... restart
 
 
 
-# Done
 
-Don't save bank items for every request
-
-Code smell: POST test too long
-
-Display multiple items in table
-
-Remove time.sleeps
-
-Clean up after FT runs
-
-Adjust model so that items are associated with different lists
-
-Add a url for creating a new list via POST
-
-Adjust unique urls for each lists
-
-Add urls for adding new item to existing list via POST
-
-Refactor code, esp. duplication in urls.py
