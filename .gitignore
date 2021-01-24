@@ -26,3 +26,4 @@ lists/static/bootstrap/css/bootstrap-theme.css.map
 lists/static/bootstrap/css/bootstrap-theme.css
 db.sqlite3
 *.pyc
+*.py

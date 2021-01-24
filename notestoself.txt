@@ -1,7 +1,15 @@
 
 # To do
 
-* [Insert open items]
+* Still one fail where FT should succeed (Kindle book Loc3802)... with Linux box as testing server on local network.
+
+    FAIL: test_layout_and_styling (functional_tests.tests.NewVisitorTest)
+    ----------------------------------------------------------------------
+    Traceback (most recent call last):
+    File "D:\micro\Documents\GitHub\tdd-book\functional_tests\tests.py", line 131, in test_layout_and_styling
+        self.assertAlmostEqual(inputbox.location['x']+inputbox.size['width']/2,512,delta = 10)
+    AssertionError: 80.23332977294922 != 512 within 10 delta (431.7666702270508 difference)
+
 
 # Done
 
