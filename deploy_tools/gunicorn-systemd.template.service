@@ -7,7 +7,7 @@ User=pubuntu
 WorkingDirectory=/home/pubuntu/sites/DOMAIN
 EnvironmentFile=/home/pubuntu/sites/DOMAIN/.env
 
-ExecStart=/home/pubuntu/anaconda3/envs/tdd-book/bin/gunicorn \
+ExecStart=/home/pubuntu/venv/tdd-book/bin/gunicorn \
     --bind unix:/tmp/superlists-DOMAIN.socket superlists.wsgi:application
 
 [Install]
