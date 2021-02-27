@@ -25,7 +25,7 @@ def _get_latest_source():
 def _update_virtualenv():
     if not exists(f'/home/{env.user}/venv/tdd-book/bin/pip'):
         run(f'python -m venv tdd-book')
-    run(f'/home/{env.user}//tdd-book/bin/pip install -r requirements.txt')
+    run(f'/home/{env.user}/venv/tdd-book/bin/pip install -r requirements.txt')
 
 def _create_or_update_dotenv():
     append('.env', 'DJANGO_DEBUG_FALSE=y')
